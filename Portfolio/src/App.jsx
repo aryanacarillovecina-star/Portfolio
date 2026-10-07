@@ -5,27 +5,39 @@ function App() {
   const projects = [
     {
       number: "01",
-      title: "Portfolio Website",
-      category: "Web Development",
+      title: "CuyoTech Student Services Information System",
+      category: "Full Stack System",
       description:
-        "A responsive personal portfolio website designed to showcase my skills, projects, and background as a Computer Science student.",
-      technologies: ["React", "HTML", "CSS"],
+        "A comprehensive student services system designed to manage institutional records, academic data, and student information efficiently.",
+      technologies: ["PHP", "MySQL", "JavaScript", "HTML/CSS"],
+      link: "https://github.com/JESSIEWANTSLEARN/CuyoTech-Student-Services-Information-System",
     },
     {
       number: "02",
-      title: "Student Management System",
-      category: "Database / Programming",
+      title: "Task Management Application",
+      category: "Full Stack Web App",
       description:
-        "A system designed to organize and manage student information, records, and other academic data.",
-      technologies: ["C#", "SQL"],
+        "A full-stack task manager application built with a decoupled architecture featuring a dedicated React frontend interface and RESTful API backend service.",
+      technologies: ["React", "Node.js", "Express", "REST API"],
+      links: [
+        {
+          label: "Frontend Repo ↗",
+          url: "https://github.com/aryanacarillovecina-star/Task-Manager-FRONTEND",
+        },
+        {
+          label: "Backend Repo ↗",
+          url: "https://github.com/aryanacarillovecina-star/Task-Manager-BACKEND",
+        },
+      ],
     },
     {
       number: "03",
-      title: "Programming Project",
-      category: "Software Development",
+      title: "Library Management System",
+      category: "Software / Database",
       description:
-        "A programming project focused on problem solving, logical thinking, and implementing practical software solutions.",
-      technologies: ["Java", "Python"],
+        "A streamlined application built to automate cataloging, book borrowing tracking, and member administration for library environments.",
+      technologies: ["Java", "SQL", "Database Management"],
+      link: "https://github.com/jhnyz/Library-Management-System",
     },
   ];
 
@@ -49,7 +61,6 @@ function App() {
 
   return (
     <div className="portfolio">
-      {/* NAVIGATION */}
       <header className="navbar">
         <a href="#home" className="logo">
           AV
@@ -68,7 +79,6 @@ function App() {
         </a>
       </header>
 
-      {/* HERO */}
       <main id="home">
         <section className="hero section">
           <div className="hero-content">
@@ -109,7 +119,6 @@ function App() {
           </div>
         </section>
 
-        {/* MARQUEE */}
         <div className="marquee">
           <div>
             <span>WEB DEVELOPMENT</span>
@@ -123,7 +132,6 @@ function App() {
           </div>
         </div>
 
-        {/* ABOUT */}
         <section id="about" className="section about-section">
           <div className="section-label">
             <span>01</span>
@@ -167,7 +175,6 @@ function App() {
           </div>
         </section>
 
-        {/* SKILLS */}
         <section id="skills" className="section skills-section">
           <div className="section-label">
             <span>02</span>
@@ -249,13 +256,43 @@ function App() {
                       <span key={technology}>{technology}</span>
                     ))}
                   </div>
+
+                  <div
+                    className="project-links"
+                    style={{ marginTop: "1.5rem" }}
+                  >
+                    {project.link ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-button"
+                        style={{ display: "inline-block" }}
+                      >
+                        View on GitHub ↗
+                      </a>
+                    ) : (
+                      <div style={{ display: "flex", gap: "1rem" }}>
+                        {project.links.map((item) => (
+                          <a
+                            key={item.label}
+                            href={item.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-button"
+                          >
+                            {item.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </article>
             ))}
           </div>
         </section>
 
-        {/* CONTACT */}
         <section id="contact" className="contact-section">
           <div className="contact-content">
             <p className="eyebrow">HAVE A PROJECT IN MIND?</p>
@@ -311,7 +348,6 @@ function App() {
         </section>
       </main>
 
-      {/* FOOTER */}
       <footer>
         <div className="footer-logo">AV</div>
 
