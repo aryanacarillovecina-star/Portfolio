@@ -209,19 +209,19 @@ a {
   justify-content: center;
 }
 
-/* Picture holder: no circle behind it, no border */
+/* Perfect Circular Picture Holder */
 .hero-image-wrapper {
   position: relative;
   z-index: 2;
 
-  width: 420px;
-  height: 560px;
+  width: 440px;
+  height: 440px;
 
   overflow: hidden;
-  border: none;
-  background: #ddd5ca; /* holder fill until your photo is added */
+  border: 1px solid var(--black);
+  background: #ddd5ca;
 
-  border-radius: 210px 210px 10px 10px;
+  border-radius: 50%;
 }
 
 .hero-image-wrapper img {
@@ -229,6 +229,7 @@ a {
   height: 100%;
 
   object-fit: cover;
+  object-position: center top;
 
   filter: grayscale(100%);
 }
@@ -666,19 +667,19 @@ footer .footer-logo {
   }
 
   .hero-visual {
-    height: 440px;
+    height: 400px;
   }
 
   .hero-image-wrapper {
     width: 280px;
-    height: 390px;
+    height: 280px;
   }
 
   .available-badge {
     width: 85px;
     height: 85px;
     right: 5%;
-    bottom: 40px;
+    bottom: 20px;
   }
 
   .available-badge span {
