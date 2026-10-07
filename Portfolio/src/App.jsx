@@ -120,7 +120,49 @@ function App() {
         </section>
 
         <div className="marquee">
-          <div>
+          <div className="marquee-track">
+            <span>WEB DEVELOPMENT</span>
+            <b>✦</b>
+            <span>PROGRAMMING</span>
+            <b>✦</b>
+            <span>DATABASE MANAGEMENT</span>
+            <b>✦</b>
+            <span>PROBLEM SOLVING</span>
+            <b>✦</b>
+            <span>WEB DEVELOPMENT</span>
+            <b>✦</b>
+            <span>PROGRAMMING</span>
+            <b>✦</b>
+            <span>DATABASE MANAGEMENT</span>
+            <b>✦</b>
+            <span>PROBLEM SOLVING</span>
+            <b>✦</b>
+            <span>WEB DEVELOPMENT</span>
+            <b>✦</b>
+            <span>PROGRAMMING</span>
+            <b>✦</b>
+            <span>DATABASE MANAGEMENT</span>
+            <b>✦</b>
+            <span>PROBLEM SOLVING</span>
+            <b>✦</b>
+          </div>
+          <div className="marquee-track" aria-hidden="true">
+            <span>WEB DEVELOPMENT</span>
+            <b>✦</b>
+            <span>PROGRAMMING</span>
+            <b>✦</b>
+            <span>DATABASE MANAGEMENT</span>
+            <b>✦</b>
+            <span>PROBLEM SOLVING</span>
+            <b>✦</b>
+            <span>WEB DEVELOPMENT</span>
+            <b>✦</b>
+            <span>PROGRAMMING</span>
+            <b>✦</b>
+            <span>DATABASE MANAGEMENT</span>
+            <b>✦</b>
+            <span>PROBLEM SOLVING</span>
+            <b>✦</b>
             <span>WEB DEVELOPMENT</span>
             <b>✦</b>
             <span>PROGRAMMING</span>

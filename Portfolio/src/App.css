@@ -33,6 +33,36 @@ a {
   overflow: hidden;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatBadge {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 .navbar {
   position: sticky;
   top: 0;
@@ -66,6 +96,13 @@ a {
 
   font-family: "Playfair Display", serif;
   font-size: 15px;
+
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo:hover,
+.footer-logo:hover {
+  transform: rotate(360deg);
 }
 
 .navbar nav {
@@ -79,11 +116,25 @@ a {
   text-transform: uppercase;
   letter-spacing: 1px;
 
-  transition: opacity 0.2s ease;
+  position: relative;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease;
 }
 
-.navbar nav a:hover {
-  opacity: 0.5;
+.navbar nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: var(--black);
+  transition: width 0.3s ease;
+}
+
+.navbar nav a:hover::after {
+  width: 100%;
 }
 
 .nav-button {
@@ -96,12 +147,13 @@ a {
   text-transform: uppercase;
   letter-spacing: 1px;
 
-  transition: 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .nav-button:hover {
   background: var(--black);
   color: var(--cream);
+  transform: translateY(-2px);
 }
 
 .section {
@@ -133,6 +185,7 @@ a {
 .hero-content {
   position: relative;
   z-index: 2;
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .eyebrow {
@@ -186,11 +239,12 @@ a {
   text-transform: uppercase;
   letter-spacing: 1px;
 
-  transition: 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .primary-button:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .text-button {
@@ -198,6 +252,15 @@ a {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  display: inline-block;
+}
+
+.text-button:hover {
+  opacity: 0.7;
+  transform: translateX(3px);
 }
 
 .hero-visual {
@@ -207,9 +270,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
 }
 
-/* Picture holder: no circle behind it, no border */
 .hero-image-wrapper {
   position: relative;
   z-index: 2;
@@ -218,10 +282,19 @@ a {
   height: 560px;
 
   overflow: hidden;
-  border: none;
-  background: #ddd5ca; /* holder fill until your photo is added */
+  border: 1px solid var(--black);
+  border-radius: 12px;
+  box-shadow: 12px 12px 0px var(--black);
+  background: #ddd5ca;
 
-  border-radius: 210px 210px 10px 10px;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-image-wrapper:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 18px 18px 0px var(--black);
 }
 
 .hero-image-wrapper img {
@@ -229,14 +302,17 @@ a {
   height: 100%;
 
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
 
-  filter: grayscale(100%);
+.hero-image-wrapper:hover img {
+  transform: scale(1.03);
 }
 
 .available-badge {
   position: absolute;
-  right: 0;
-  bottom: 80px;
+  right: -10px;
+  bottom: 60px;
 
   z-index: 3;
 
@@ -254,6 +330,16 @@ a {
   background: var(--cream);
 
   text-align: center;
+
+  animation: floatBadge 4s ease-in-out infinite;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.available-badge:hover {
+  transform: scale(1.1) rotate(12deg);
+  background: var(--white);
 }
 
 .available-badge span {
@@ -271,26 +357,33 @@ a {
 
 .marquee {
   padding: 22px 0;
-
   overflow: hidden;
-
   background: var(--black);
   color: var(--cream);
-
   font-family: "DM Mono", monospace;
   font-size: 12px;
   letter-spacing: 2px;
+  display: flex;
+  user-select: none;
+  width: 100%;
 }
 
-.marquee div {
+.marquee-track {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 35px;
+  padding-right: 35px;
   white-space: nowrap;
+  flex-shrink: 0;
+  animation: marqueeScroll 30s linear infinite;
+  will-change: transform;
 }
 
-.marquee b {
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-track b {
   font-size: 12px;
 }
 
@@ -408,6 +501,14 @@ a {
   color: var(--black);
 
   min-height: 300px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .dark-card {
@@ -415,6 +516,10 @@ a {
   color: var(--cream);
 
   border: 1px solid #44423e;
+}
+
+.dark-card:hover {
+  border-color: #66625a;
 }
 
 .skill-icon {
@@ -444,10 +549,24 @@ a {
 
   font-family: "DM Mono", monospace;
   font-size: 10px;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.skill-list span:hover,
+.tech-tags span:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: var(--black);
 }
 
 .dark-card .skill-list span {
   border-color: #55514b;
+}
+
+.dark-card .skill-list span:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--cream);
 }
 
 .projects-heading {
@@ -476,11 +595,16 @@ a {
   border: 1px solid var(--line);
   background: var(--cream-light);
 
-  transition: transform 0.25s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+  border-color: var(--black);
 }
 
 .project-top {
@@ -582,10 +706,15 @@ a {
   font-size: 15px;
 
   word-break: break-word;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  display: inline-block;
 }
 
 .contact-details a:hover {
   text-decoration: underline;
+  transform: translateX(3px);
 }
 
 footer {
@@ -672,6 +801,7 @@ footer .footer-logo {
   .hero-image-wrapper {
     width: 280px;
     height: 390px;
+    box-shadow: 8px 8px 0px var(--black);
   }
 
   .available-badge {
