@@ -1,5 +1,4 @@
 import "./App.css";
-// Replace 'profile.jpg' with your image file name in src/assets/
 import heroImage from "./assets/profile.png";
 
 function App() {
